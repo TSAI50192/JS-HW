@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>7-華攝氏度轉換</title>
+        <style>
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            form input {
+                width: 250px;
+                margin-bottom: 10px;
+            }
+            form button {
+                width: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>華攝氏度轉換</h1>
+        <form>
+            <label for="celsius ">請輸入攝氏溫度：</label>
+            <input
+                type="number"
+                name="celsius "
+                id="celsius"
+                value=""
+                placeholder="請輸入攝氏溫度 "
+            />
+            <label for="fahrenheit">請輸入華氏溫度：</label>
+            <input
+                type="number"
+                name="fahrenheit"
+                id="fahrenheit"
+                value=""
+                placeholder="請輸入華氏溫度 "
+            />
+            <button type="button" onclick="tempTransformFunction()">
+                確認
+            </button>
+        </form>
+        <p id="outputText"></p>
+        <script>
+            // 華氏要換算成攝氏時，要先減32後，再乘以5/9
+            // 攝氏要換算成華氏時，要先乘以9/5，再加上32
+            const celsius = document.querySelector("#celsius");
+            const fahrenheit = document.querySelector("#fahrenheit");
+            const outputText = document.querySelector("#outputText");
+            const tempTransformFunction = () => {
+                if (fahrenheit.value) {
+                    outputText.innerText = `攝氏溫度為${Math.floor(
+                        ((Number(fahrenheit.value) - 32) * 5) / 9
+                    )}度`;
+                    fahrenheit.value = "";
+                    celsius.value = "";
+                    return;
+                }
+                if (celsius.value) {
+                    outputText.innerText = `華氏溫度為${Math.floor(
+                        (Number(celsius.value) * 9) / 5 + 32
+                    )}度`;
+                    fahrenheit.value = "";
+                    celsius.value = "";
+                    return;
+                }
+            };
+        </script>
+    </body>
+</html>

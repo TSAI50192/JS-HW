@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>5-請畫出九九乘法表</title>
+        <style>
+            table {
+                border: 3px solid #0099ff;
+                border-collapse: collapse;
+                background-color: #ccffff;
+            }
+            td {
+                color: red;
+                border-right: 3px solid #0099ff;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tbody id="nineNine"></tbody>
+        </table>
+        <script>
+            // const nineNine = document.querySelector("#nineNine");
+            // const MultiplicationTable = () => {
+            //     Array(9)
+            //         .fill(1)
+            //         .map((v1, i1) => {
+            //             nineNine.innerHTML += `<tr class="number"></tr>`;
+            //             const number = document.querySelectorAll(".number");
+            //             // console.log(number[i1]);
+            //             Array(9)
+            //                 .fill(1)
+            //                 .map((v2, i2) => {
+            //                     number[i1].innerHTML += `<td>${i1 + 1} * ${
+            //                         i2 + 1
+            //                     } = ${(i1 + 1) * (i2 + 1)}</td>`;
+            //                 });
+            //         });
+            // };
+            // MultiplicationTable();
+
+            // 6-改成function寫法
+            const nineNine = document.querySelector("#nineNine");
+            const MultiplicationTable = (num1, num2) => {
+                Array(num1)
+                    .fill(1)
+                    .map((v1, i1) => {
+                        nineNine.innerHTML += `<tr class="number"></tr>`;
+                        const number = document.querySelectorAll(".number");
+                        // console.log(number);
+                        console.log(number[0]);
+                        Array(num2)
+                            .fill(1)
+                            .map((v2, i2) => {
+                                number[i1].innerHTML += `<td>${i2 + 1} * ${
+                                    i1 + 1
+                                } = ${(i1 + 1) * (i2 + 1)}</td>`;
+                            });
+                    });
+            };
+            MultiplicationTable(9, 9);
+        </script>
+    </body>
+</html>

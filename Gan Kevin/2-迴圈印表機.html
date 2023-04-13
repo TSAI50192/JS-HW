@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>用^畫出下列圖型</title>
+    </head>
+    <body>
+        <script>
+            // let tree = "";
+            // for (i = 1; i <= 10; i++) {
+            //     if (i <= 8) {
+            //         let space = "";
+            //         for (h = 1; h <= 10 - i; h++) {
+            //             space += " ";
+            //         }
+
+            //         let str = "";
+            //         for (j = 1; j <= 2 * i - 1; j++) {
+            //             str += "^";
+            //         }
+            //         tree += space + str + "\n";
+            //     }
+            //     if (i > 8) {
+            //         let space = "";
+            //         for (h = 1; h <= 9; h++) {
+            //             space += " ";
+            //         }
+
+            //         let str = "";
+            //         for (j = 1; j <= i; j++) {
+            //             str = "^";
+            //         }
+            //         tree += space + str + "\n";
+            //     }
+            // }
+            // console.log(tree);
+            
+            // 6-改成function寫法
+            const printTree = (num) => {
+                let tree = "";
+                for (i = 1; i <= num; i++) {
+                    if (i <= num - 2) {
+                        let space = "";
+                        for (h = 1; h <= num - i; h++) {
+                            space += " ";
+                        }
+
+                        let str = "";
+                        for (j = 1; j <= 2 * i - 1; j++) {
+                            str += "^";
+                        }
+                        tree += space + str + "\n";
+                    }
+                    if (i > num - 2) {
+                        let space = "";
+                        for (h = 1; h <= num - 1; h++) {
+                            space += " ";
+                        }
+
+                        let str = "";
+                        for (j = 1; j <= i; j++) {
+                            str = "^";
+                        }
+                        tree += space + str + "\n";
+                    }
+                }
+                console.log(tree);
+            };
+            printTree(10);
+        </script>
+    </body>
+</html>

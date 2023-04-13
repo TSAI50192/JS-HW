@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>計算年齡</title>
+    </head>
+    <body>
+        <h1>計算年齡</h1>
+        <form>
+            <label for="birthday">請輸入生日：</label>
+            <input
+                type="date"
+                name="birthday"
+                id="birthday"
+                value=""
+                placeholder="請輸入出生年月日"
+            />
+            <button type="button" onclick="ageCount()">確認</button>
+        </form>
+        <p id="outputText"></p>
+        <script>
+            const birthday = document.querySelector("#birthday");
+            const outputText = document.querySelector("#outputText");
+            const ageCount = () => {
+                const birthdayTimeStamp = Date.parse(birthday.value);
+                console.log(birthdayTimeStamp);
+                const now = Date.parse(new Date());
+                console.log(now);
+                const age = ((now - birthdayTimeStamp) / 31536000000).toFixed(
+                    1
+                );
+                outputText.innerText = `計算結果為您${age}歲`;
+            };
+        </script>
+    </body>
+</html>

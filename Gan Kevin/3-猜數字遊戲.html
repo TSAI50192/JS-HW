@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>3-猜數字遊戲</title>
+    </head>
+    <style>
+        #guessNum {
+            width: 275px;
+        }
+    </style>
+    <body>
+        <h1>猜數字遊戲</h1>
+        <form>
+            <label for="guessNum ">猜數字：</label>
+            <input
+                type="number"
+                name="guessNum "
+                id="guessNum"
+                value=""
+                placeholder="請輸入猜測的數字(1~100)，輸入0離開遊戲 "
+            />
+            <button type="button" onclick="guessNumberFunction()">確認</button>
+        </form>
+        <p id="outputText"></p>
+        <script>
+            let num = Math.floor(Math.random() * 100);
+            console.log(num);
+            const guessNum = document.querySelector("#guessNum");
+            const outputText = document.querySelector("#outputText");
+            const guessNumberFunction = () => {
+                if (guessNum.value == "0") {
+                    guessNum.setAttribute("disabled", "true");
+                    outputText.innerText = "因為您已輸入0，已離開當前遊戲";
+                    guessNum.value = "";
+                    return;
+                }
+                if (guessNum.value > 100) {
+                    outputText.innerText = "您輸入的數字大於100，不符合格式";
+                    guessNum.value = "";
+                    return;
+                }
+                if (guessNum.value < 0) {
+                    outputText.innerText = "您輸入的數字小於0，不符合格式";
+                    guessNum.value = "";
+                    return;
+                }
+                if (guessNum.value > num) {
+                    outputText.innerText = "數字太大!";
+                    guessNum.value = "";
+                    return;
+                }
+                if (guessNum.value < num) {
+                    outputText.innerText = "數字太小!";
+                    guessNum.value = "";
+                    return;
+                }
+                if (guessNum.value == num) {
+                    outputText.innerText = `恭喜您猜中數字! 答案就是${num}`;
+                    guessNum.value = "";
+                    return;
+                }
+            };
+        </script>
+    </body>
+</html>
