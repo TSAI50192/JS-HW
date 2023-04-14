@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Temperature</title>
+    </head>
+    <body>
+        <h1>攝氏 & 華氏 溫度轉換</h1>
+        <!-- 
+            攝氏 = (華氏 - 32) * 5/9
+            華氏 = 攝氏 * 9/5 + 32  -->
+
+        <div>
+            <label for="celsius">攝氏溫度:</label>
+            <input type="text" id="celsius" value="" />°C
+            <input type="button" value="轉換" id="btnC" />
+            <span id="outputCF"></span>
+
+            <br />
+
+            <label for="fahrenheit">華氏溫度:</label>
+            <input type="text" id="fahrenheit" value="" />°F
+            <input type="button" value="轉換" id="btnF" />
+            <span id="outputFC"></span>
+        </div>
+        <script>
+            const celsius = document.getElementById("celsius");
+            const fahrenheit = document.getElementById("fahrenheit");
+            const outputCF = document.getElementById("outputCF");
+            const outputFC = document.getElementById("outputFC");
+
+            function temperatureCF() {
+                const cf = (celsius.value * (9 / 5) + 32).toFixed(2); //toFixed讓小數點4捨5入只有2位
+
+                if (celsius.value !== "") {
+                    outputCF.innerHTML = "華氏溫度為：" + cf + "°F";
+                    return;
+                }
+            }
+
+            function temperatureFC() {
+                const fc = ((fahrenheit.value - 32) * (5 / 9)).toFixed(2);
+
+                if (fahrenheit.value !== "") {
+                    outputFC.innerHTML = "攝氏溫度為：" + fc + "°C";
+                    return;
+                }
+            }
+
+            btnC.addEventListener("click", temperatureCF);
+            btnF.addEventListener("click", temperatureFC);
+        </script>
+    </body>
+</html>

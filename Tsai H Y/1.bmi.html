@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BMI</title>
+    </head>
+    <body>
+        <h1>BMI 計算機</h1>
+        <section>
+            <div>
+                <label for="height">身高:</label>
+                <input
+                    type="number"
+                    name="height"
+                    min="0"
+                    id="height"
+                    value=""
+                />公分
+                <br />
+                <label for="weight">體重:</label>
+                <input
+                    type="number"
+                    name="weight"
+                    min="0"
+                    id="weight"
+                    value=""
+                />公斤
+            </div>
+            <div>
+                <input
+                    type="submit"
+                    id="submit"
+                    name="submit"
+                    value="開始計算"
+                />
+                <input
+                    type="button"
+                    id="refresh"
+                    name="refresh"
+                    value="重新整理"
+                />
+            </div>
+        </section>
+
+        <section>
+            <h3>您的BMI值：</h3>
+            <h3 id="resultText"></h3>
+            <h3 id="bmiText"></h3>
+        </section>
+
+        <script>
+            const bmiText = document.querySelector("#bmiText");
+            bmiText.style.display = "none";
+
+            //事件點擊按鈕
+            const sub = document.querySelector("#submit");
+            const refresh = document.querySelector("#refresh");
+
+            function sendData() {
+                //身高值
+                const height = document.querySelector("#height").value;
+                //體重值
+                const weight = document.querySelector("#weight").value;
+                //計算出BMI值
+                const resultText = document.querySelector("#resultText");
+                //  印出BMI標準
+                const bmiText = document.querySelector("#bmiText");
+
+                //當使用者沒有輸入數字時會跳出視窗提示
+                if (weight != "" && height != "") {
+                    //bmi標準可畫面顯示
+                    bmiText.style.display = "block";
+                    //計算結果
+                    resultText.innerHTML = bmi(weight, height);
+                    //BMI標準計算結果
+                    bmiText.innerHTML = checkBMI(bmi(weight, height));
+                } else {
+                    bmiText.style.display = "none";
+                    alert("請輸入身高體重！");
+                    return;
+                }
+            }
+
+            // BMI = 體重(公斤)/身高(公尺)的平方
+            //抓出來的值都是文字，需要把它變成數字
+            function bmi(weight, height) {
+                const w = parseInt(weight);
+                const h = parseInt(height) / 100; //公分轉公尺
+                const bmi = (w / (h * h)).toFixed(2); //toFixed讓小數點4捨5入只有2位
+                return bmi; //回傳結果
+            }
+
+            function checkBMI(bmi) {
+                if (bmi < 18.5) {
+                    return "體重過輕";
+                } else if (bmi >= 18.5 && bmi < 24) {
+                    return "體重正常";
+                } else if (bmi >= 24 && bmi < 27) {
+                    return "體重過重";
+                } else if (bmi >= 27 && bmi < 30) {
+                    return "輕度肥胖";
+                } else if (bmi >= 30 && bmi < 35) {
+                    return "中度肥胖";
+                } else {
+                    return "重度肥胖";
+                }
+            }
+
+            //清空值
+            function undo(e) {
+                document.querySelector("#weight").value = "";
+                document.querySelector("#height").value = "";
+                bmiText.style.display = "none";
+                resultText.innerHTML = "";
+                return;
+            }
+
+            //事件監聽
+            sub.addEventListener("click", sendData);
+            refresh.addEventListener("click", undo);
+        </script>
+    </body>
+</html>

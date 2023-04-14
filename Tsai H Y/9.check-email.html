@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Check Email</title>
+    </head>
+    <body>
+        <h1>檢查電子郵件</h1>
+
+        <label for="email">Email:</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="例如：123wed@gmail.com"
+            value=""
+        />
+        <input type="button" id="button" value="檢查" />
+        <p id="message"></p>
+
+        <script>
+            //檢查電子郵件中要有 @ . 以及 @ 不能重複
+            const btn = document.getElementById("button");
+
+            // function checkEmail() {
+            //     const email = document.getElementById("email").value;
+            //     const mes = document.getElementById("message");
+
+            //     // 檢查是否包含 @ 和 . 符號
+            //     if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+            //         mes.textContent = "電子郵件格式錯誤！必須包含 @ 和 . 符號";
+            //     } else if (email.indexOf("@") !== email.lastIndexOf("@")) {
+            //         // 檢查 @ 符號是否重複
+            //         mes.textContent = "電子郵件格式錯誤！@ 符號不能重複";
+            //     } else {
+            //         mes.textContent = "電子郵件格式正確！";
+            //     }
+            // }
+
+            //-----------------------------------
+            //11.改用 Regex 物件來完成驗證
+            // [a-zA-Z0-9._-] 表示允許小寫字母、大寫字母、數字、點、下劃線、破折號...
+            // + 表示該字符集可以重複出現一次或多次
+            // ([a-zA-Z]{2,}) 表示允許小寫字母和大寫字母，至少出現 2 次
+
+            function checkEmail() {
+                const email = document.getElementById("email").value;
+                const mes = document.getElementById("message");
+                const regex =
+                    /^([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$/;
+
+                if (email == "") {
+                    mes.innerHTML = "請輸入電子郵件";
+                    return false;
+                }
+
+                if (!email.match(regex)) {
+                    mes.innerHTML = "電子郵件格式錯誤！";
+                    return false;
+                }
+
+                mes.innerHTML = "電子郵件格式正確！";
+                return true;
+            }
+
+            btn.addEventListener("click", checkEmail);
+        </script>
+    </body>
+</html>

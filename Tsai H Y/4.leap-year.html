@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Leap Year</title>
+    </head>
+    <body>
+        <h1>輸入西元年，判斷是否是閏年</h1>
+        <!-- 
+        1.西元除以400可整除，為閏年。
+        2.西元除以4可整除但除以100不可整除，為閏年。
+        3.西元除以4不可整除，為平年。
+        4.西元除以100可整除但除以400不可整除，為平年。 -->
+
+        <label for="text">請輸入西元年:</label>
+        <input type="text" id="text" />
+        <h3 id="output"></h3>
+
+        <script>
+            const text = document.getElementById("text");
+            const output = document.getElementById("output");
+
+            function leapYear(year) {
+                let result = "";
+                //取餘數用 %
+                if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+                    result = "閏年";
+                } else {
+                    result = "平年";
+                }
+                return result;
+            }
+
+            text.addEventListener("keydown", (e) => {
+                if (e.keyCode == 13) {
+                    //按下Enter鍵
+                    const year = text.value;
+                    output.innerHTML = `${year} 為 ${leapYear(year)}`;
+                }
+            });
+        </script>
+    </body>
+</html>

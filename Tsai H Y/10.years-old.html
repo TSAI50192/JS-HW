@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Years Old</title>
+    </head>
+    <body>
+        <h1>輸入生日計算歲數</h1>
+
+        <label for="birthday">請輸入生日:</label>
+        <input type="date" id="birthday" value="1990-01-01" />
+        <input type="button" id="button" value="開始計算" />
+        <p id="message"></p>
+
+        <script>
+            const btn = document.getElementById("button");
+
+            function calculate() {
+                const birthday = document.getElementById("birthday").value;
+                const mes = document.getElementById("message");
+
+                const birth = new Date(birthday).getTime(); // new Date(dateString) 解析字串成為 Date 型別的物件
+                const today = new Date().getTime(); // new Date()產生當下的本地時間
+
+                const perYear = 1000 * 60 * 60 * 24 * 365; // 一年的毫秒數
+
+                const yearsOld = Math.floor((today - birth) / perYear); // 將毫秒數轉換成整年
+
+                mes.textContent = "您現在是 " + yearsOld + " 歲";
+            }
+
+            btn.addEventListener("click", calculate);
+        </script>
+    </body>
+</html>
