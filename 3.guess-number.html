@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Guess Number</title>
+    </head>
+    <body>
+        <h1>猜數字遊戲</h1>
+        <label for="guessNum">請輸入猜測的數字(1~100)，輸入0離開遊戲 =></label>
+        <input
+            type="number"
+            name="guessNum"
+            max="100"
+            min="0"
+            id="guessNum"
+            value=""
+        />
+
+        <input type="button" value="確認答案" id="button" name="button" />
+        <input type="button" value="重新開始" id="refresh" name="refresh" />
+
+        <h3 id="output"></h3>
+
+        <script>
+            let answer = Math.floor(Math.random() * 100) + 1;
+            console.log("answer", answer);
+
+            const btn = document.querySelector("#button");
+            const refresh = document.querySelector("#refresh");
+
+            const guessInput = document.querySelector("#guessNum");
+
+            const output = document.querySelector("#output");
+            output.style.display = "none";
+
+            function sendData() {
+                const guessNum = document.querySelector("#guessNum").value;
+
+                if (guessNum == "") {
+                    output.innerHTML = "請輸入數字";
+                } else if (guessNum == "0") {
+                    output.innerHTML = "您已離開遊戲，可按重新開始再次加入!";
+                    guessInput.disabled = true;
+                } else if (guessNum == answer) {
+                    output.innerHTML = "猜中數字 = " + answer;
+                } else if (guessNum > answer) {
+                    output.innerHTML = guessNum + "數字太大!";
+                } else {
+                    output.innerHTML = guessNum + "數字太小!";
+                }
+                output.style.display = "block";
+                return;
+            }
+
+            //清空值
+            function undo() {
+                document.querySelector("#guessNum").value = "";
+                output.style.display = "none";
+                guessInput.disabled = false;
+                answer = Math.floor(Math.random() * 100) + 1;
+                console.log("new answer", answer);
+                return;
+            }
+
+            //事件監聽
+            btn.addEventListener("click", sendData);
+            refresh.addEventListener("click", undo);
+        </script>
+    </body>
+</html>

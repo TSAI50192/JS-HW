@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Draw Tree</title>
+    </head>
+
+    <body>
+        <h1>用＾畫出樹</h1>
+        <script>
+            //樹冠
+            for (let i = 1; i <= 8; i++) {
+                //總共有幾層
+                for (let n = 1; n <= (8 - i) * 4; n++) {
+                    // 使每一層的空格數目遞減, ＾ = 4個空格
+                    document.write("&nbsp");
+                }
+                for (let s = 1; s <= i * 2 - 1; s++) {
+                    // 使每一層的 ^ 數目以單數增加
+                    document.write("＾");
+                }
+                document.write("<br>");
+            }
+
+            //樹幹
+            for (let i = 1; i <= 2; i++) {
+                for (let n = 1; n <= (8 - 1) * 4; n++) {
+                    document.write("&nbsp");
+                }
+                for (let s = 1; s <= 1; s++) {
+                    document.write("＾");
+                }
+                document.write("<br>");
+            }
+
+            document.write("<hr>");
+
+            // 6.改用 function 來完成
+            function drawTree(height) {
+                //宣告一個字串，用來累加函式的輸出結果
+                let output = "";
+
+                //樹冠
+                for (let i = 1; i <= height; i++) {
+                    //總共有幾層
+                    for (let n = 1; n <= (height - i) * 4; n++) {
+                        // 使每一層的空格數目遞減
+                        output += "&nbsp;"; //+= 累加空格
+                    }
+                    for (let s = 1; s <= i * 2 - 1; s++) {
+                        // 使每一層的 ^ 數目以單數增加
+                        output += "＾";
+                    }
+                    output += "<br>";
+                }
+
+                //樹幹
+                for (let i = 1; i <= 2; i++) {
+                    for (let n = 1; n <= (height - 1) * 4; n++) {
+                        output += "&nbsp;";
+                    }
+                    for (let s = 1; s <= 1; s++) {
+                        output += "＾";
+                    }
+                    output += "<br>";
+                }
+
+                return output; // 回傳累加的字串
+            }
+
+            // 呼叫函式並將回傳值顯示在網頁上
+            document.write(drawTree(10));
+        </script>
+    </body>
+</html>

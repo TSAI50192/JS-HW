@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Times Table</title>
+        <style>
+            table {
+                background-color: rgb(184, 243, 252);
+                border: 2px solid rgb(0, 106, 255);
+                /* 邊框合併為單一邊框 */
+                border-collapse: collapse;
+            }
+            td {
+                border-right: 2px solid rgb(0, 106, 255);
+                padding: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>九九乘法表</h1>
+        <script>
+            document.write("<table>");
+            document.write("<tr>");
+            for (let x = 2; x <= 9; x++) {
+                document.write("<td>");
+                for (let y = 1; y <= 9; y++) {
+                    document.write(x + "*" + y + "=" + x * y + "<br>");
+                }
+                document.write("</td>");
+            }
+            document.write("</tr>");
+            document.write("</table>");
+
+            document.write("<hr>");
+
+            // 6.改用 function 來完成
+            function timesTable(num) {
+                let output = "<table><tr>";
+                for (let x = 2; x <= num; x++) {
+                    output += "<td>";
+                    for (let y = 1; y <= num; y++) {
+                        output += `${x} * ${y} = ${x * y}<br>`;
+                    }
+                    output += "</td>";
+                }
+                output += "</tr></table>";
+                return output;
+            }
+
+            // 呼叫函式並將回傳值顯示在網頁上
+            document.write(timesTable(9));
+        </script>
+    </body>
+</html>
